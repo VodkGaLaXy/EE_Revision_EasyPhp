@@ -13,9 +13,6 @@ session_start();
 if (isset($_POST['submitRegister'])) {
     register();
 }
-if(isset($_SESSION)){
-    echo "Vous avez été enregistré !";
-}
 ?>
 <!DOCTYPE html>
 <html>

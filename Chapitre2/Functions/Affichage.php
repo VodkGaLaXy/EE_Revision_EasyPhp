@@ -1,4 +1,6 @@
 <?php
+include_once 'FunctionConnect.php';
+
 function showFormRegister() {
     ?>
     <fieldset>
