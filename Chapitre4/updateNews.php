@@ -10,16 +10,9 @@
 include_once 'Functions/Affichage.php';
 include_once 'Functions/FunctionConnect.php';
 session_start();
-$UserNameSurname = getUserInformations($_SESSION['idConnect']);
-if (isset($_POST['submitNews'])) {
-    insertPost($UserNameSurname['id_User'], $_POST['description'], $_POST['title']);
-}
-if(isset($_POST['update'])){
-    
-}
-if(isset($_POST['delete'])){
-    
-}
+if(isset($_POST['updateNews'])){
+    updatePost($_POST['description'],$_POST['title'],$_GET['id']);
+}//getPostById($_GET['id'])[0]['title']
 ?>
 <!DOCTYPE html>
 <html>
@@ -29,10 +22,8 @@ if(isset($_POST['delete'])){
         <title>Chapitre 4</title>
     </head>
     <body>
-        <h2>Bonjour <?php echo $UserNameSurname['surname'] . ' ' . $UserNameSurname['nameUser']; ?>, voici votre fil d'actualités !</h2>
         <?php
-        showFormNews();
-        showPost();
+        showFormNewsUpdate();
         ?>
 
     </body>
