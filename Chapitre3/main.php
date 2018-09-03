@@ -10,6 +10,10 @@
 include_once 'Functions/Affichage.php';
 include_once 'Functions/FunctionConnect.php';
 session_start();
+$UserNameSurname = getUserInformations($_SESSION['idConnect']);
+if (isset($_POST['submitNews'])) {
+    insertPost($UserNameSurname['id_User'], $_POST['description'], $_POST['title']);
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -19,8 +23,11 @@ session_start();
         <title>Chapitre 3</title>
     </head>
     <body>
-        <?php showFormConnect(); ?>
-        
-        <a href='inscription.php'>Pas encore inscrit?</a>
+        <h2>Bonjour <?php echo $UserNameSurname['surname'] . ' ' . $UserNameSurname['nameUser']; ?>, voici votre fil d'actualités !</h2>
+        <?php
+        showFormNews();
+        showPost();
+        ?>
+
     </body>
 </html>

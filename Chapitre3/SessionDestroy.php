@@ -11,3 +11,5 @@ if (ini_get("session.use_cookies")) {
 
 session_destroy();
 
+header("Location: http://127.0.0.1:8080/EE_Revision_EasyPhp/Chapitre3/index.php");
+exit;

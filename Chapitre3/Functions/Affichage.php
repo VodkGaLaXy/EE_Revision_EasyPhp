@@ -44,3 +44,39 @@ function showFormConnect() {
     </fieldset>
     <?php
 }
+
+function showFormNews() {
+    ?>
+
+    <fieldset>
+        <legend>Nouveau post</legend>
+        <form method="post" action="">
+            <table>
+                <tbody>
+                    <tr><td>Titre:</td></tr>
+                    <tr><td><input name='title' type='text' value=''/></td></tr>
+                    <tr><td>Description:</td></tr>
+                    <tr><td><textarea name="description" rows="30" cols="100"></textarea></td></tr>
+                    <tr><td><input name='submitNews' type='submit' value='Valider'/></td></tr>
+                </tbody>
+            </table>
+        </form>
+    </fieldset>
+    <button><a href="SessionDestroy.php">Déconnection</a></button>
+    <?php
+}
+
+function showPost(){
+    $posts[] = getPosts();
+    $totalPosts = count($posts[0]['title']);
+    ?>
+    <table>
+        <tbody>
+            <?php for($i = 0;$i<$totalPosts;$i++){ ?>
+            <tr><td><h2><?php echo $posts[$i]['title'] ?></h2></td></tr>
+            <tr><td><?php echo $posts[$i]['description'] ?></td></tr>
+            <?php } ?>
+        </tbody>
+    </table>
+    <?php
+}

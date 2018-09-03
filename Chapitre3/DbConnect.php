@@ -17,7 +17,10 @@
   }
   return $db;
   } */
-
+/**
+ * @author Gaetan
+ * La classe sert à se connecter à la base
+ */
 class SPDO {
 
     private static $PDOInstance = null;

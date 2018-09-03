@@ -40,8 +40,8 @@ function register() {
  */
 function connect($login) {
     $userInformations = getUserInformations($login);
-        $id = $_POST['id'];
-        $password = $_POST['password'];
+    $id = $_POST['id'];
+    $password = $_POST['password'];
     if ($id == $userInformations['login'] && $password = $userInformations['passwordUser']) {
         $_SESSION['idConnect'] = $userInformations['login'];
         $_SESSION['passwordConnect'] = $userInformations['passwordUser'];
@@ -54,12 +54,36 @@ function connect($login) {
 
 function getUserInformations($login) {
     try {
-        
-        foreach (SPDO::getInstance()->query("SELECT login,passwordUser,surname,nameUser FROM tbl_users WHERE login = '$login'") as $membre) {
+
+        foreach (SPDO::getInstance()->query("SELECT login,passwordUser,surname,nameUser,id_User FROM tbl_users WHERE login = '$login'") as $membre) {
             return $membre;
         }
     } catch (PDOException $e) {
         echo "Erreur " . $e->getMessage();
     }
 }
+function insertPost($idUser, $description, $title) {
+    try {
+        $bdd = SPDO::getInstance();
+        $req = $bdd->prepare("INSERT INTO tbl_news (id_User,title,description) VALUES (:idUser,:title,:description)");
+        $req->execute(array(
+            'idUser' => $idUser,
+            'title' => $title,
+            'description' => $description,
+        ));
+        echo "le post a été enregistré avec succès !";
+    } catch (PDOException $e) {
+        echo "Erreur " . $e->getMessage();
+    }
+}
 
+function getPosts(){
+    try {
+        $bdd = SPDO::getInstance();
+        $req = $bdd->prepare("SELECT * FROM tbl_news ORDER BY id_News");
+        $req->execute();
+        return $req->fetch(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+        echo "Erreur " . $e->getMessage();
+    }
+}
