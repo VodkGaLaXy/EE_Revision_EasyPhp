@@ -37,18 +37,3 @@ function connect() {
     }
 }
 
-function registerUser($surname, $nameUser, $login, $passwordUser) {
-    try {
-        //('')
-        $db = SPDO::getInstance();
-        $db->prepare('INSERT INTO tbl_users (surname,nameUser,login,passwordUser) VALUES (ted,roux,op,12345)');
-       /* $db->bindValue(':surname', $surname, PDO::PARAM_STR);
-        $db->bindValue(':nameUser', $nameUser, PDO::PARAM_STR);
-        $db->bindValue(':login', $login, PDO::PARAM_STR);
-        $db->bindValue(':passwordUser', $passwordUser, PDO::PARAM_STR);*/
-        $db->execute();
-        echo "Vous avez été enregistré avec succès";
-    } catch (PDOException $e) {
-        echo "Erreur " . $e->getMessage();
-    }
-}
